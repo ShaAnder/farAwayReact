@@ -1,107 +1,47 @@
+// ---- IMPORTS ---- //
+
 import { useState } from "react";
 
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: true },
-];
+import Logo from "./components/logo";
+import Form from "./components/form";
+import PackingList from "./components/packinglist";
+import Stats from "./components/stats";
 
 export default function App() {
+  const [items, setItems] = useState([]);
+
+  function handleAddItems(item) {
+    setItems((items) => [...items, item]);
+  }
+
+  function handleDeleteItem(id) {
+    setItems((items) => items.filter((item) => item.id !== id));
+  }
+
+  function handleToggleItem(id) {
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  }
+
+  function handleClearItems() {
+    const confirmed = window.confirm("Are you sure you want to clear list?");
+
+    if (confirmed) setItems([]);
+  }
   return (
     <div className="app">
       <Logo />
-      <Form />
-      <PackingList />
-      <Stats />
-    </div>
-  );
-}
-
-/**
- * Logo / header component to render our logo
- * @returns
- */
-function Logo() {
-  return <h1>🌴 Far Away 💼</h1>;
-}
-
-/**
- * Form component that will render our items
- * @returns
- */
-function Form() {
-  const [description, setDescription] = useState("");
-  const [quantity, setQuantitiy] = useState(1);
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    if (!description) return;
-
-    const newItem = { description, quantity, packed: false, id: Date.now() };
-
-    setDescription("");
-    setQuantitiy(1);
-  }
-
-  return (
-    <form className="add-form">
-      <h3>What do you need for your trip?</h3>
-      <select
-        value={quantity}
-        onChange={(e) => setQuantitiy(Number(e.target.value))}
-      >
-        {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
-          <option value={num} key={num}>
-            {num}
-          </option>
-        ))}
-      </select>
-      <input
-        type="text"
-        placeholder="item..."
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
+      <Form onAddItems={handleAddItems} />
+      <PackingList
+        items={items}
+        onDeleteItem={handleDeleteItem}
+        onToggleItem={handleToggleItem}
+        onClearItems={handleClearItems}
       />
-      <button>Add</button>
-    </form>
-  );
-}
-
-/**
- * Packing list component designed to contain our items
- * @returns
- */
-function PackingList() {
-  return (
-    <div className="list">
-      <ul>
-        {initialItems.map((item) => (
-          <Item item={item} key={item.id} />
-        ))}
-      </ul>
+      <Stats items={items} />
     </div>
-  );
-}
-
-function Item({ item }) {
-  return (
-    <li>
-      <span style={item.packed ? { textDecoration: "line-through" } : {}}>
-        {item.quantity} {item.description}
-      </span>
-      <button>❌</button>
-    </li>
-  );
-}
-
-/**
- * Stat counter for any items we are tracking
- * @returns
- */
-function Stats() {
-  return (
-    <footer className="stats">
-      <em>💼 You Have X items on your list, you have packed X (X%)</em>
-    </footer>
   );
 }
