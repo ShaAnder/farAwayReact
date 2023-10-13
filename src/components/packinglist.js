@@ -5,7 +5,9 @@ import { useState } from "react";
 
 /**
  * Packing list component designed to contain our items
- * @returns
+ * @param {*} items -> our created items, state uplift functions to send data to state (clear, delete or toggle an item)
+ * @returns jsx for rendering the packing list section + item ocmponents
+ * @author ShaAnder
  */
 export default function PackingList({
   items,
@@ -33,6 +35,8 @@ export default function PackingList({
     sortedItems = items
       .slice()
       .sort((a, b) => Number(a.packed) - Number(b.packed));
+
+  // return our jsx with each item mapped to render on the screen and our dropdown options
   return (
     <div className="list">
       <ul>

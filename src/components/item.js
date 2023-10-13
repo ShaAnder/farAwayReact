@@ -1,4 +1,11 @@
+/**
+ * Function for the items being created, these are created inside the packing list and the data is passed to them
+ * @param {*} item -> item to be made, toggle and delete functions
+ * @returns jsx for item rendering
+ * @author ShaAnder
+ */
 export default function Item({ item, onDeleteItem, onToggleItem }) {
+  // jsx with our new item
   return (
     <li>
       <input
