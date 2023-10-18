@@ -41,9 +41,7 @@ This app utilizes several features that would typically be found in a list app
 - React
 - NodeJS
 
-<p align="center">
-  <img alt="React Pizza App" src="public\image.png" width="50%" />
-</p>
+![image](https://github.com/ShaAnder/far_away_react/assets/129494996/eb299808-c726-4788-ace9-399543d2b81f)
 
 ## Installation Guide
 
