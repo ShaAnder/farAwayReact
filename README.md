@@ -42,7 +42,7 @@ This app utilizes several features that would typically be found in a list app
 - NodeJS
 
 <p align="center">
-  <img alt="React Pizza App" src="public\image.png" width="50%" />
+  <img alt="Far Away React" src="public\image.png" width="50%" />
 </p>
 
 ## Installation Guide
