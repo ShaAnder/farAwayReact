@@ -79,7 +79,8 @@ Below we can see a list of summarized learning points and feel free to ask or dm
 - State and multiple state management
 - Form components
 - How to create and delete components inside components
-- interactivity
+- Lifting up state
+- Deriving State
 
 and more
 
