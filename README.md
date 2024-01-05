@@ -1,4 +1,4 @@
-<h1 align="center">React Checklist</h1>
+<h1 align="center">Far Away React</h1>
 <p align="center">
     <img src="public/favicon.ico" alt="Logo" width="15%" height="auto">
  </p>
